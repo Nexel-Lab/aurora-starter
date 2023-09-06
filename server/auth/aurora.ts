@@ -9,6 +9,8 @@ import GithubProvider from 'next-auth/providers/github'
 import { env } from '@global/env.mjs'
 import { prisma } from '@aurora/libs/database'
 
+/** Next-Auth Configs here **/
+
 declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {

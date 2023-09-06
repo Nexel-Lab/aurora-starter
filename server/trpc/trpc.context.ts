@@ -4,6 +4,8 @@ import { type Session } from 'next-auth'
 import { prisma } from '@aurora/libs/database/prisma'
 import { s3 } from '@aurora/libs/s3'
 
+/** tRPC Context **/
+
 type CreateContextOptions = {
   session: Session | null
 }

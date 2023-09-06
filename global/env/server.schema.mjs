@@ -1,9 +1,6 @@
 import { z } from 'zod'
 
-/**
- * Specify your server-side environment variables schema here. This way you can ensure the app
- * isn't built with invalid env vars.
- */
+/** Specify your server-side environment variables schema here. **/
 
 export const serverSchema = {
   // ** ENVIRONMENT

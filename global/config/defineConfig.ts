@@ -8,8 +8,8 @@ export const app = {
     NextJs: '13.4.19',
   },
   Functions: {
-    useAuth: true,
-    useCursor: false,
+    useAuth: true, // Enable by default
+    useCursor: false, // set to true if you want to use custom cursor
   },
   s3: {
     bucketName: process.env.S3_UPLOAD_BUCKET ?? 'aurora',

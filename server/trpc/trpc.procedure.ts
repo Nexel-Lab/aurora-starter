@@ -1,6 +1,8 @@
 import { TRPCError } from '@trpc/server'
 import { t } from './trpc.init'
 
+/** Define your tRPC procedure here */
+
 export const publicProcedure = t.procedure
 
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {

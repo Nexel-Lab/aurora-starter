@@ -2,6 +2,9 @@ import { getSession } from '@server/auth'
 import { SignInButton } from './layout.signin'
 
 const Layout = async (p: { children: React.ReactNode }) => {
+  /**
+   * getSever session by import { getSession } from '@server/auth'
+   **/
   const session = await getSession()
 
   if (!session) {

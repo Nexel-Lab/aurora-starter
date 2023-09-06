@@ -4,6 +4,10 @@ import { useEffect, useRef } from 'react'
 import { State } from '@global/store'
 import { css } from '@emotion/css'
 
+/** You can customize your cursor here
+ * by default it turned of, you can turn on by
+ * go to `/global/config/defineConfig.ts` and change `useCursor` to true **/
+
 function Cursor() {
   const _cursorType = State((state) => state.cursor)
   const _dark = State((state) => state.dark)

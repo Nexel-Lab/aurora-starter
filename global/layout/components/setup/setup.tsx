@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { State } from '@global/store'
 import { GlobalStyles } from '@aurora/view/theme/global.css'
 
+/** This is Initialize when app start (below is set darkmode) **/
+
 const Theme = () => {
   const _setDark = State((state) => state.setDark)
   const _dark = State((state) => state.dark)

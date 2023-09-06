@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+/** Global store is here **/
+
 const store: tStore = (set) => ({
   page: 'Home',
   setPage: (p) => set(() => ({ page: p })),

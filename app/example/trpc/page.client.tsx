@@ -4,6 +4,9 @@ import { trpc } from '@server/trpc/client'
 import type { Session } from 'next-auth'
 
 function Client(p: { session: Session | null }): JSX.Element {
+  /**
+   * Here is calling tRPC from Client Components
+   **/
   const hello = trpc.example.hello.useQuery({ text: 'tRPC' })
 
   const { data: secretMessage } = trpc.example.getSecretMessage.useQuery(

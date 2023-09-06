@@ -1,6 +1,8 @@
 'use client'
 
 import { signIn } from 'next-auth/react'
+/** 'next-auth/react' is working on client components only
+ * You need to use 'use client' when you use it */
 
 const SignInButton = () => {
   return (

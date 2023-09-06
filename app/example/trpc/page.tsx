@@ -6,6 +6,7 @@ import { trpcCaller } from '@server/trpc'
 const Page = async () => {
   const session = await getServerSession(authOptions)
 
+  /** Here is calling tRPC from Server Components */
   const caller = await trpcCaller()
   const result = await caller.example.hello({ text: 'tRPC' })
 
