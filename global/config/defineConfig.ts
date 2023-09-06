@@ -19,11 +19,30 @@ export const app = {
 export const metaData = {
   appName: app.NAME,
   title: 'Aurora App', // Default SEO Title
-  url: 'https://example.com', // URL of the website
-  description: 'default SEO description', // Default SEO Description
+  url: 'https://aurora.theiceji.com', // URL of this website
+  description:
+    'Unleash Limitless Scalability and Type-Safe Mastery: Harness the Power of Next.js, Next-Auth, tRPC, Prisma, MongoDB, Redis, Tailwind, and AWS S3 Storage in Your Elite Full-Stack Framework.', // Default SEO Description
   coverImg: '/og.jpg', // Default OpenGraph Image
-  author: 'default SEO author',
-  keywords: ['keyword one', 'keyword two', 'keyword three'],
+  author: 'TheIceJi', // SEO Author name
+  keywords: [
+    // Default SEO Keywords
+    'Aurora',
+    'Full-stack',
+    'Framework',
+    'NextJs',
+    'Next-Auth',
+    'TypeScript',
+    'Typesafe',
+    'tRPC',
+    'App Directory',
+    'Nextjs 13',
+    'AppDir',
+    'MongoDB',
+    'Redis',
+    'Prisma',
+    'Tailwind',
+    'AWS S3',
+  ],
   twitterID: '@twitterId',
 }
 
