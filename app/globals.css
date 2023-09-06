@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  @apply Anim-2
+}
+
+.TH {
+  font-family: 'Prompt' !important;
+}
+
+/* *! Utils */
+
+.NSB::-webkit-scrollbar {
+  display: none;
+}
+
+.SSB::-webkit-scrollbar {
+  width: 2px;
+}
+
+@layer base {
+  .h-svh {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  .h-dvh {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .h-lvh {
+    height: 100vh;
+    height: 100lvh;
+  }
+
+  .w-svw {
+    width: 100vw;
+    width: 100svw;
+  }
+
+  .w-dvw {
+    width: 100vw;
+    width: 100dvw;
+  }
+
+  .w-lvw {
+    width: 100vw;
+    width: 100lvw;
+  }
+}
+
+/* *! Animate */
+
+.Anim {
+  @apply transition duration-300 xl:hover:duration-200;
+}
+
+.Anim-1 {
+  @apply transition duration-500 xl:hover:duration-300;
+}
+
+.Anim-2 {
+  @apply transition duration-700 xl:hover:duration-500;
+}

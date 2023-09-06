@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "mongodb"
+  url       = env("ACCELERATE_URI")
+  directUrl = env("MONGODB_URI")
+}
+
+// ** ---------------------------  ** //
+// **        Initialization        ** //
+// ** ---------------------------  ** //
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+enum UserPlan {
+  FREE
+  PLUS
+  PRO
+  ELITE
+}
+
+// ** ------------------------------  ** //
+// **     Necessary for Next auth     ** //
+// ** ------------------------------  ** //
+
+model User {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  username       String?        @unique
+  name           String?
+  credential     Credential?
+  role           UserRole       @default(USER)
+  plan           UserPlan       @default(FREE)
+  subscriptionId String?
+  email          String         @unique
+  emailVerified  DateTime?
+  createdAt      DateTime       @default(now()) @db.Timestamp
+  image          String?
+  metadata       Json           @default("{}")
+  active         Boolean        @default(true)
+  accounts       Account[]
+  balance        Float          @default(0)
+  sessions       Session[]
+  notifications  Notification[]
+  projectIds     String[]       @default([]) @db.ObjectId
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? // @db.Text
+  access_token      String? // @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? // @db.Text
+  session_state     String?
+  metadata          Json    @default("{}")
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Credential {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  password String
+  user     User   @relation(fields: [email], references: [email], onDelete: Cascade)
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ** ---------------------------  ** //
+// **           User Data          ** //
+// ** ---------------------------  ** //
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now()) @db.Timestamp
+  isRead    Boolean
+  title     String
+  content   String
+  link      String
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
