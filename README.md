@@ -11,7 +11,7 @@
 
 <h2 id="about">About this boilerplate</h2>
 
-This boilerplate is made up from AURORA App with SEO and deploy-ready for you next Web-App.
+This boilerplate is made up from AURORA App with SEO, PWA, and deploy-ready for you next Web-App.
 
 
 <h2 id="overview">The AURORA App</h2>
