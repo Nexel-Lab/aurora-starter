@@ -47,3 +47,4 @@ optionals
 - Add required env `MONGODB_URI` (other env variables are optionals)
 - Run `yarn db:generate` and `yarn db:push`
 - Start dev server with `yarn dev` (running on http://localhost:8080)
+- Deploy production with `yarn deploy`
