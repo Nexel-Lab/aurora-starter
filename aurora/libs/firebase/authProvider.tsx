@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { auth } from './connect'
+import * as auth from 'firebase/auth'
+import { authInstance } from './auth'
 import { AuthContext } from './authContext'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -9,19 +10,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   function signup(email: string, password: string) {
-    return auth.createUserWithEmailAndPassword(email, password)
+    return auth.createUserWithEmailAndPassword(authInstance, email, password)
   }
 
   function login(email: string, password: string) {
-    return auth.signInWithEmailAndPassword(email, password)
+    return auth.signInWithEmailAndPassword(authInstance, email, password)
   }
 
   function logout() {
-    return auth.signOut()
+    return auth.signOut(authInstance)
   }
 
   function resetPassword(email: string) {
-    return auth.sendPasswordResetEmail(email)
+    return auth.sendPasswordResetEmail(authInstance, email)
   }
 
   function updateEmail(email: string) {
@@ -39,7 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user: any) => {
+    const unsubscribe = auth.onAuthStateChanged(authInstance, (user: any) => {
       setCurrentUser(user)
       setLoading(false)
     })
