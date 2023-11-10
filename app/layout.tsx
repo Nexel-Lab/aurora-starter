@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
 import clsx from 'clsx'
 
-import analytics from '@aurora/libs/analytics'
+import { GoogleAnalytics } from '@aurora/libs/analytics'
 import Toast from '@aurora/view/modules.toast'
 import Config from '@global/config'
 import Wrapper from '@global/layout/wrapper'
@@ -33,8 +33,6 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({ children }: AppPropsWithLayout) => {
-  const Analytics = analytics.gtm.component
-
   return (
     <html
       lang='en'
@@ -44,7 +42,7 @@ const App = ({ children }: AppPropsWithLayout) => {
       )}
     >
       <body suppressHydrationWarning={true}>
-        <Analytics />
+        <GoogleAnalytics />
         <Wrapper>
           {children}
           <Toast />

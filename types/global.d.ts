@@ -3,6 +3,10 @@
 export {}
 
 declare global {
+  interface Window {
+    dataLayer: Record<string, any>[]
+  }
+
   /**
    * @see https://stackoverflow.com/a/59774743
    */
