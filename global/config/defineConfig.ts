@@ -3,9 +3,9 @@ export const app = {
   VERSION: '1.0.0',
   UPDATE_DATE: 'Sep 5, 2023',
   Dependencies: {
-    Aurora: '1.0',
+    Aurora: '1.1',
     React: '18.2.0',
-    NextJs: '13.4.19',
+    NextJs: '14.0.4',
   },
   Functions: {
     useAuth: true, // Enable by default

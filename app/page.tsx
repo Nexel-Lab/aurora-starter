@@ -74,12 +74,12 @@ const Page = () => {
 
   return (
     <>
-      <div className='relative flex w-screen flex-col items-center justify-center bg-gradient-to-r from-white to-backgroundLight-3 to-70% pt-24 dark:from-[#0f282e] dark:to-[#0c191c] md:h-screen md:pt-0'>
+      <div className='relative flex w-screen flex-col items-center justify-center bg-gradient-to-r from-white to-backgroundLight-3 to-70% pt-24 dark:from-[#4e6a8a] dark:to-[#0c191c] md:h-screen md:pt-0'>
         <div className='z-10 w-full px-6 pb-24 md:px-12 md:pb-0 xl:w-[1164px] xl:px-0'>
           <section className='mr-auto pb-6 el:pb-10'>
             <h6 className='text-xl uppercase el:text-3xl'>Welcome to</h6>
             <motion.h1
-              className='text-6xl font-black text-[#b23948] dark:text-[#fecfbb] el:text-8xl'
+              className='text-6xl font-black text-[#b23948] dark:text-[#e2fbff] el:text-8xl'
               initial={setAnimation.initial}
               animate={setAnimation.animate}
               transition={setAnimation.transition(0.4)}
@@ -120,7 +120,11 @@ const Page = () => {
             className='Anim font-bold opacity-60 hover:opacity-100'
           >
             Git Repo
-          </Link>
+          </Link>{' '}
+          <span className='opacity-40'>/ Build</span>{' '}
+          <span className='Anim font-bold opacity-60 hover:opacity-100'>
+            2024.01.1301
+          </span>
         </p>
       </div>
     </>

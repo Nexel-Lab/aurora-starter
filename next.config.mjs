@@ -107,9 +107,6 @@ const nextConfig = {
     register: true,
     runtimeCaching,
   },
-  experimental: {
-    serverActions: true,
-  },
   sentry: {
     hideSourceMaps: true,
   },

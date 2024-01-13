@@ -1,0 +1,69 @@
+# IceJi -- Universal Git Ignore
+
+# .gitignore
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dependencies
+/node_modules
+
+/.pnp
+.pnp.js
+package-lock.json
+yarn.lock
+yearn
+
+# testing
+/coverage
+/.env
+.env
+
+# next.js
+/.next/
+/out/
+
+# NUXT
+/.nuxt/
+/.output/
+
+# production
+/build
+/public/sw.js
+/public/workbox-*.js
+/public/worker-*.js
+/public/sw.js.map
+/public/workbox-*.js.map
+/public/worker-*.js.map
+/.bin
+.bin
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Sentry
+.sentryclirc
+
+# Vercel
+.vercel
+
+# Sentry
+.sentryclirc

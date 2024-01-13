@@ -16,6 +16,10 @@ export const GlobalStyles = (Darkmode = true) => (
       //   display: none;
       // }
 
+      *:focus {
+        outline: 0 !important;
+      }
+
       *::-webkit-scrollbar:horizontal {
         display: none;
       }
