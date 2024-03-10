@@ -1,9 +1,13 @@
-function Extend(Color: any, Plugins: [any]) {
+import type { PluginsConfig } from 'tailwindcss/types/config'
+
+function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
+  const setPlugins = Plugins ? { plugins: Plugins } : {}
   return {
     content: [
       './app/**/**/**/**/**/*.{js,ts,jsx,tsx}',
       './global/**/**/**/**/*.{js,ts,jsx,tsx}',
       './aurora/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',
     theme: {
@@ -47,7 +51,7 @@ function Extend(Color: any, Plugins: [any]) {
         colors: { ...Color },
       },
     },
-    plugins: Plugins,
+    ...setPlugins,
   }
 }
 

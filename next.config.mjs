@@ -90,16 +90,19 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: [
-      // social network provider
-      'avatars.githubusercontent.com',
-      'platform-lookaside.fbsbx.com',
-      'lh3.googleusercontent.com',
-      // Your CMS provider
-      'media.hygraph.com',
-      'media.graphassets.com',
-      'images.prismic.io',
-      'skillicons.dev',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '129.213.124.156',
+      },
     ],
   },
   pwa: {
@@ -108,7 +111,12 @@ const nextConfig = {
     runtimeCaching,
   },
   sentry: {
+    widenClientFileUpload: true,
+    transpileClientSDK: true,
+    tunnelRoute: '/monitoring',
     hideSourceMaps: true,
+    disableLogger: true,
+    automaticVercelMonitors: true,
   },
 }
 

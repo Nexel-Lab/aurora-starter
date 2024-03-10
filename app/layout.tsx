@@ -2,10 +2,11 @@
 import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 import clsx from 'clsx'
 
-import { GoogleAnalytics } from '@aurora/libs/analytics'
-import Toast from '@aurora/view/modules.toast'
+import { env } from '@global/env.mjs'
+import { Toast } from '@aurora/view/modules.toast'
 import Config from '@global/config'
 import Wrapper from '@global/layout/wrapper'
 
@@ -14,6 +15,7 @@ import 'nprogress/nprogress.css'
 import './globals.css'
 
 export const metadata = { ...Config.metaData }
+export const viewport = { ...Config.viewport }
 
 const fInter = Inter({
   subsets: ['latin'],
@@ -42,11 +44,11 @@ const App = ({ children }: AppPropsWithLayout) => {
       )}
     >
       <body suppressHydrationWarning={true}>
-        <GoogleAnalytics />
         <Wrapper>
           {children}
           <Toast />
         </Wrapper>
+        <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM} />
       </body>
     </html>
   )

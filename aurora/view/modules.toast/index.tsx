@@ -1,30 +1,33 @@
 'use client'
-import { ToastContainer, toast } from 'react-toastify'
+
+import { ToastContainer } from 'react-toastify'
+import clsx from 'clsx'
 
 const Toast = () => {
-  const ToastStyle = {
-    position: toast.POSITION.BOTTOM_RIGHT,
-  }
-
   const contextClass = {
     success: 'bg-green-600',
     error: 'bg-red-600',
     info: 'bg-gray-600',
     warning: 'bg-orange-400',
     default: 'bg-black',
-    dark: 'bg-white-600 font-gray-300',
+    // dark: 'bg-white-600 font-gray-300',
   }
+
+  type tToastType = 'success' | 'error' | 'info' | 'warning' | 'default'
+  // | 'dark'
 
   return (
     <ToastContainer
-      {...ToastStyle}
-      toastClassName={({ typeSwitch }) =>
-        contextClass[typeSwitch || 'default'] +
-        'relative flex p-1 mt-3 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer bg-opacity-30 backdrop-filter backdrop-blur-md border border-white/10'
+      position='bottom-right'
+      toastClassName={({ type }: any) =>
+        clsx(
+          contextClass[(type || 'default') as tToastType],
+          'relative flex p-1 mt-3 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer bg-opacity-30 backdrop-filter backdrop-blur-md border border-white/10',
+        )
       }
       bodyClassName={() => 'text-sm font-white font-med block p-3 flex'}
       closeButton={ToastCloseButton}
-    // progressClassName={(css) => 'h-64'}
+      // progressClassName={(css) => 'h-64'}
     />
   )
 }
@@ -40,4 +43,4 @@ const ToastCloseButton = ({ closeToast }: { closeToast: any }) => (
   </div>
 )
 
-export default Toast
+export { Toast }

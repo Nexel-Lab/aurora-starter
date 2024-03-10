@@ -1,11 +1,11 @@
 export const app = {
   NAME: 'Aurora App',
-  VERSION: '1.0.0',
-  UPDATE_DATE: 'Sep 5, 2023',
+  VERSION: '2024.03.1001',
+  UPDATE_DATE: 'Mar 10, 2024',
   Dependencies: {
     Aurora: '1.1',
     React: '18.2.0',
-    NextJs: '14.0.4',
+    NextJs: '14.1.3',
   },
   Functions: {
     useAuth: true, // Enable by default
@@ -19,11 +19,11 @@ export const app = {
 export const metaData = {
   appName: app.NAME,
   title: 'Aurora App', // Default SEO Title
-  url: 'https://aurora.theiceji.com', // URL of this website
+  url: 'https://aurora.nexellab.com', // URL of this website
   description:
     'Unleash Limitless Scalability and Type-Safe Mastery: Harness the Power of Next.js, Next-Auth, tRPC, Prisma, MongoDB, Redis, Tailwind, and AWS S3 Storage in Your Elite Full-Stack Framework.', // Default SEO Description
   coverImg: '/og.jpg', // Default OpenGraph Image
-  author: 'TheIceJi', // SEO Author name
+  author: 'Nexel', // SEO Author name
   keywords: [
     // Default SEO Keywords
     'Aurora',
