@@ -4,9 +4,9 @@ function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
   const setPlugins = Plugins ? { plugins: Plugins } : {}
   return {
     content: [
-      './app/**/**/**/**/**/*.{js,ts,jsx,tsx}',
-      './global/**/**/**/**/*.{js,ts,jsx,tsx}',
-      './aurora/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './app/**/*.{js,ts,jsx,tsx}',
+      './global/**/*.{js,ts,jsx,tsx}',
+      './aurora/**/*.{js,ts,jsx,tsx}',
       './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',
