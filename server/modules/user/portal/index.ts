@@ -1,2 +1,2 @@
-export * as CONTROLLER from './controller'
+export * as SERVICE from './service'
 export * as SCHEMA from './schema'
