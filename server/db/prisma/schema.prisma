@@ -25,6 +25,14 @@ enum UserPlan {
   ELITE
 }
 
+model App {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now()) @db.Timestamp
+  title       String   @unique
+  description String?
+  content     Json
+}
+
 // ** ------------------------------  ** //
 // **     Necessary for Next auth     ** //
 // ** ------------------------------  ** //

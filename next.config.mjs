@@ -12,18 +12,35 @@ import 'dotenv/config'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import { createRequire } from 'node:module'
-import withPWA from 'next-pwa'
-import runtimeCaching from 'next-pwa/cache.js'
 import plugins from 'next-compose-plugins'
+import withPWAInit from '@ducanh2912/next-pwa'
+// import { withSentryConfig } from '@sentry/nextjs'
+// import { withAxiom } from 'next-axiom'
 import bundleAnalyzer from '@next/bundle-analyzer'
+import million from 'million/compiler'
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const withPWA = withPWAInit({
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  dest: 'public',
+  fallbacks: {
+    document: '/offline',
+  },
+  register: true,
+})
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
+
+const standaloneExport = process.env.EXPORT === 'standalone' && {
+  output: 'standalone',
+}
 
 const nextConfig = {
   webpack: (config, { webpack, /*dev ,*/ isServer }) => {
@@ -99,17 +116,9 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
-      {
-        protocol: 'http',
-        hostname: '129.213.124.156',
-      },
     ],
   },
-  pwa: {
-    dest: 'public',
-    register: true,
-    runtimeCaching,
-  },
+  ...standaloneExport,
   sentry: {
     widenClientFileUpload: true,
     transpileClientSDK: true,
@@ -120,4 +129,23 @@ const nextConfig = {
   },
 }
 
-export default plugins([withBundleAnalyzer, withPWA], nextConfig)
+const sentryWebpackPluginOptions = {
+  silent: true,
+  org: 'org_name',
+  project: 'project_name',
+}
+
+const millionConfig = {
+  auto: { rsc: true },
+}
+
+export default plugins(
+  [
+    // withAxiom,
+    // [withSentryConfig, sentryWebpackPluginOptions],
+    withBundleAnalyzer,
+    withPWA,
+    [million.next, millionConfig],
+  ],
+  nextConfig,
+)

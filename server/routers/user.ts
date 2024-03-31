@@ -1,7 +1,8 @@
-import { createTRPCRouter, p } from '@server/trpc'
-import { getUsernameSchema } from '../schema/user.schema'
-import { getUserByUsername } from '../controller/user.controller'
+import { createTRPCRouter } from '@server/trpc'
+import { userPortalRouter } from './user.portal'
+import { userProfileRouter } from './user.profile'
 
 export const userRouter = createTRPCRouter({
-  getUser: p.publicProcedure.input(getUsernameSchema).query(getUserByUsername),
+  portal: userPortalRouter,
+  profile: userProfileRouter,
 })

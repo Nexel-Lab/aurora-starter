@@ -1,4 +1,4 @@
-import { theme } from './global/config/defineConfig'
+import { theme } from './global/config/config.theme'
 import { TailwindDefaultConfig } from './aurora/view/theme/default'
 import { nextui } from '@nextui-org/react'
 import type { Config } from 'tailwindcss'

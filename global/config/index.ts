@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 import { Init } from '@aurora/view'
-import defineConfig from './defineConfig'
+import config from './config'
 
-export const app = { ...defineConfig.app }
-export const metaData = Init.MetaData(defineConfig.metaData)
+export * from './config'
+export const metaData = Init.MetaData(config.rawMetadata)
 export const viewport = Init.Viewport()
-export const contacts = Init.Contacts(defineConfig.contacts)
+export const contacts = Init.Contacts(config.rawContacts)
 
 const Config = {
-  app: { ...defineConfig.app },
-  metaData: metaData,
-  viewport: viewport,
-  contacts: contacts,
+  ...config,
+  metaData,
+  viewport,
+  contacts,
 }
 
 export default Config

@@ -15,11 +15,36 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string
+      role: 'USER' | 'ADMIN' | 'SUPER_ADMIN'
+      plane: 'FREE' | 'PLUS' | 'PRO' | 'ELITE'
+      metadata: any
     } & DefaultSession['user']
   }
 }
 
+const useSecureCookies = env.NODE_ENV === 'production'
+const cookiePrefix = useSecureCookies ? '__Secure-' : ''
+const hostName = new URL(env.NEXTAUTH_URL).hostname
+
 export const authOptions: NextAuthOptions | { adapter: any } = {
+  // pages: {
+  //   signIn: '/',
+  //   signOut: '/',
+  //   error: '/',
+  //   newUser: '/',
+  // },
+  cookies: {
+    sessionToken: {
+      name: `${cookiePrefix}next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        domain: '.' + hostName,
+        secure: useSecureCookies,
+      },
+    },
+  },
   callbacks: {
     session: ({ session, user }: any) => {
       return {
@@ -27,6 +52,8 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
         user: {
           ...session.user,
           id: user.id,
+          role: user.role,
+          plan: user.plan,
         },
       }
     },
