@@ -24,7 +24,7 @@ const SignUpEmail = () => {
         return
       }
       t.success('Sign up successfully, please login')
-      router.refresh()
+      // router.refresh()
       router.push('/portal')
     },
     onError: () => {

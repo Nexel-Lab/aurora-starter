@@ -4,7 +4,7 @@ import { nextui } from '@nextui-org/react'
 import type { Config } from 'tailwindcss'
 
 const TailwindConfig = {
-  ...TailwindDefaultConfig.Extend(theme.color, [nextui()]),
+  ...TailwindDefaultConfig.Extend([nextui()]),
 } as Config
 
 export default TailwindConfig

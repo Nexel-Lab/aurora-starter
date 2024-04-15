@@ -2,40 +2,168 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --background: 48 100% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 47 100% 50%;
+    --primary-foreground: 47 100% 50%;
+
+    --secondary: 170 96% 39%;
+    --secondary-foreground: 170 96% 39%;
+
+    --tertiary: 256 100% 63%;
+    --tertiary-foreground: 256 100% 63%;
+
+    --quaternary: 0 100% 62%;
+    --quaternary-foreground: 0 100% 62%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 210 40% 98%;
+
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 47 100% 50%;
+    --primary-foreground: 47 100% 50%;
+
+    --secondary: 170 96% 65%;
+    --secondary-foreground: 170 96% 65%;
+
+    --tertiary: 256 100% 63%;
+    --tertiary-foreground: 256 100% 63%;
+
+    --quaternary: 0 100% 62%;
+    --quaternary-foreground: 0 100% 62%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  @apply Anim-2
-}
-
-.TH {
-  font-family: 'Prompt' !important;
-}
-
-/* *! Utils */
-
-.NSB::-webkit-scrollbar {
-  display: none;
-}
-
-.SSB::-webkit-scrollbar {
-  width: 2px;
-}
-
 @layer base {
+  * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    @apply border-border m-0 p-0;
+  }
+  *:focus {
+    outline: 0 !important;
+  }
+
+  *:-moz-focusring {
+    outline: 0 !important;
+  }
+
+  *::-webkit-scrollbar:horizontal {
+    @apply hidden;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-background rounded-[0.75rem];
+  }
+
+  *::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    @apply bg-primary rounded-[0.75rem];
+  }
+  ::selection {
+    color: #fff;
+    @apply bg-primary;
+  }
+  ::-moz-selection {
+    color: #fff;
+    @apply bg-primary;
+  }
+  ::-moz-focus-inner {
+    padding: 0;
+    border-style: none;
+  }
+
+  :-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  body {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    font-family: var(--font-inter), var(--font-prompt);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-rendering: optimizeLegibility;
+    @apply bg-background text-base text-foreground antialiased;
+  }
+  a,
+  a:hover {
+    @apply no-underline;
+  }
+  a:not([href]):not([class]),
+  a:not([href]):not([class]):hover {
+    text-decoration: none;
+    @apply text-inherit no-underline;
+  }
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  td,
+  th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+  }
   .h-svh {
     height: 100vh;
     height: 100svh;
@@ -65,9 +193,27 @@ body {
     width: 100vw;
     width: 100lvw;
   }
+  canvas {
+    width: 100%;
+    height: 100vh;
+  }
 }
 
-/* *! Animate */
+.TH {
+  font-family: 'Prompt' !important;
+}
+
+/* Utils */
+
+.NSB::-webkit-scrollbar {
+  display: none;
+}
+
+.SSB::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Animate */
 
 .Anim {
   @apply transition duration-300 xl:hover:duration-200;

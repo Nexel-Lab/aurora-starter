@@ -20,11 +20,12 @@ const SignInEmail = () => {
         return
       }
       t.success('Sign in complete')
-      router.refresh()
+      // router.refresh()
       router.push('/app/dashboard')
     },
     onError: () => {
       t.error(`Error: Connection failed`)
+      setIsLoading(false)
       return
     },
   })
@@ -80,8 +81,10 @@ const SignInEmail = () => {
           />
           <button
             className={clsx(
-              'Anim AnimOpacity-60 mt-5 rounded-md bg-white/60 py-1 hover:bg-white/100 dark:bg-slate-800/80 dark:hover:bg-slate-600/100',
-              isLoading && 'opacity-40',
+              'Anim AnimOpacity-60 mt-5 rounded-md bg-white/60 py-1 dark:bg-slate-800/80',
+              isLoading
+                ? 'opacity-40'
+                : 'hover:bg-white/100 dark:hover:bg-slate-600/100',
             )}
             type='submit'
             disabled={isLoading}

@@ -15,6 +15,13 @@ export const app = {
     useAudio: true,
     useAuth: true,
     useWeb3: true,
+    useShortcuts: true,
+    useModal: true,
+    useAccelerateDB: false,
+    useCursor: false,
+  },
+  Auth: {
+    sessionType: 'server' as 'server' | 'jwt',
   },
   s3: {
     bucketName: process.env.NEXT_PUBLIC_S3_UPLOAD_ENDPOINT ?? 'aurora',

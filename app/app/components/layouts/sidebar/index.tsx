@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Icon } from '@aurora/assets'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
+import { TbSettings } from 'react-icons/tb'
 import { aSideLeft, aSideChildrenLeft } from '@global/config/config.animation'
 
 const SideBar = ({
@@ -16,15 +16,6 @@ const SideBar = ({
   pageIndex: number
   session: any
 }) => {
-  type tIconList =
-    | 'Graph'
-    | 'Activity'
-    | 'Wallet'
-    | 'Work'
-    | 'Chat'
-    | 'Folder'
-    | 'Cart'
-
   const [showTooltip, setShowTooltip] = useState(0)
   const tooltipText = [
     'Dashboard',
@@ -47,17 +38,11 @@ const SideBar = ({
           transition={aSideLeft(true).transition(0.2)}
         >
           <div className='flex w-full space-x-4 rounded-t-md bg-black/[0.07] p-3 dark:bg-white/[0.07] dark:fill-white sm:flex-col sm:space-x-0 sm:p-0 sm:pb-2 xl:py-2 el:pb-4 xl:[&>div:hover>a>svg]:-translate-y-1 xl:[&>div:hover>a>svg]:translate-x-1 xl:[&>div:hover>a>svg]:scale-125 xl:[&>div:hover>a>svg]:duration-150 xl:[&>div>a>svg]:duration-500'>
-            {Routes.map((v, i) => {
-              const I = Icon[v.icon as tIconList]
+            {Routes.map((V, i) => {
               return (
                 <>
                   <motion.div
-                    className={clsx(
-                      'Anim relative w-full cursor-pointer sm:p-3 xl:p-4 el:p-5',
-                      i === pageIndex
-                        ? 'opacity-100'
-                        : 'opacity-20 xl:hover:opacity-100',
-                    )}
+                    className='Anim relative w-full cursor-pointer sm:p-3 xl:p-4 el:p-5 xl:[&:hover>a]:opacity-100'
                     initial={aSideChildrenLeft.initial}
                     exit={aSideChildrenLeft.exit}
                     animate={aSideChildrenLeft.animate}
@@ -66,14 +51,20 @@ const SideBar = ({
                     onMouseMove={() => setShowTooltip(i + 1)}
                     onMouseLeave={() => setShowTooltip(0)}
                   >
-                    <Link href={'/app/' + v.path}>
-                      <I />
+                    <Link
+                      href={'/app/' + V.path}
+                      className={clsx(
+                        'Anim',
+                        i === pageIndex ? 'opacity-100' : 'opacity-20',
+                      )}
+                    >
+                      <V.Icon />
                     </Link>
                     <AnimatePresence>
                       {showTooltip === i + 1 && (
                         <>
                           <motion.p
-                            className='Card-back-md-60 absolute left-12 top-2 px-2 py-1 text-xs xl:text-xs el:left-16 el:top-3.5 el:text-base'
+                            className='Card-back-md-60 absolute left-12 top-2 rounded-md bg-white/80 px-2 py-1 text-xs backdrop-blur-lg dark:bg-black/80 xl:text-xs el:left-16 el:top-3.5 el:text-base'
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: 20, opacity: 0 }}
@@ -105,7 +96,7 @@ const SideBar = ({
               transition={aSideChildrenLeft.transition(1.8)}
             >
               <Link href=''>
-                <Icon.Settings />
+                <TbSettings />
               </Link>
             </motion.div>
           </div>

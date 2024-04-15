@@ -4,9 +4,13 @@ import { State } from '@global/store'
 import { Icon } from '@aurora/assets'
 
 const NavClient = () => {
+  const _showNav = State((state) => state.showNav)
+  return <>{_showNav && <Navbar />}</>
+}
+
+const Navbar = () => {
   const _dark = State((state) => state.dark)
   const _setDark = State((state) => state.setDark)
-
   return (
     <>
       <div

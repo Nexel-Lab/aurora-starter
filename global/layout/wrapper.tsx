@@ -4,6 +4,8 @@ import { Providers } from './providers'
 import { Setup } from './components/setup'
 import Cursor from './components/cursor'
 import { Nav } from './components/nav'
+import { Modal } from './components/modal'
+import { Shortcuts } from './components/shortcuts'
 
 /** Global layout is here
  * Including Navbar, footer, and Global layout components **/
@@ -14,6 +16,8 @@ const Wrapper = async ({ children }: { children: React.ReactNode }) => {
       <Providers>
         <CreateProgress />
         <Setup />
+        {app.Functions.useShortcuts && <Shortcuts />}
+        {app.Functions.useModal && <Modal />}
         {children}
         <Nav />
         {app.Functions.useCursor && <Cursor />}

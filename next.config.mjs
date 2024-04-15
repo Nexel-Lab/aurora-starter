@@ -15,7 +15,6 @@ import { createRequire } from 'node:module'
 import plugins from 'next-compose-plugins'
 import withPWAInit from '@ducanh2912/next-pwa'
 // import { withSentryConfig } from '@sentry/nextjs'
-// import { withAxiom } from 'next-axiom'
 import bundleAnalyzer from '@next/bundle-analyzer'
 import million from 'million/compiler'
 
@@ -141,7 +140,6 @@ const millionConfig = {
 
 export default plugins(
   [
-    // withAxiom,
     // [withSentryConfig, sentryWebpackPluginOptions],
     withBundleAnalyzer,
     withPWA,

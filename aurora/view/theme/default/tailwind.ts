@@ -1,10 +1,13 @@
 import type { PluginsConfig } from 'tailwindcss/types/config'
 
-function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
+function Extend(Plugins: Partial<PluginsConfig>) {
   const setPlugins = Plugins ? { plugins: Plugins } : {}
   return {
     content: [
-      './app/**/*.{js,ts,jsx,tsx}',
+      './pages/**/*.{ts,tsx}',
+      './components/**/*.{ts,tsx}',
+      './app/**/*.{ts,tsx}',
+      './src/**/*.{ts,tsx}',
       './global/**/*.{js,ts,jsx,tsx}',
       './aurora/**/*.{js,ts,jsx,tsx}',
       './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
@@ -16,9 +19,8 @@ function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
         md: '768px',
         lg: '992px',
         xl: '1200px',
-        xxl: '1440px',
-        el: '1920px',
-        eel: '2560px',
+        '2xl': '1440px',
+        el: '2160px',
       },
       fontFamily: {
         inter: ['var(--font-inter)'],
@@ -34,8 +36,47 @@ function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
       },
       container: {
         center: true,
+        padding: '2rem',
+        screens: {
+          '2xl': '1400px',
+        },
       },
       extend: {
+        colors: {
+          border: 'hsl(var(--border))',
+          input: 'hsl(var(--input))',
+          ring: 'hsl(var(--ring))',
+          background: 'hsl(var(--background))',
+          foreground: 'hsl(var(--foreground))',
+          primary: {
+            DEFAULT: 'hsl(var(--primary))',
+            foreground: 'hsl(var(--primary-foreground))',
+          },
+          secondary: {
+            DEFAULT: 'hsl(var(--secondary))',
+            foreground: 'hsl(var(--secondary-foreground))',
+          },
+          destructive: {
+            DEFAULT: 'hsl(var(--destructive))',
+            foreground: 'hsl(var(--destructive-foreground))',
+          },
+          muted: {
+            DEFAULT: 'hsl(var(--muted))',
+            foreground: 'hsl(var(--muted-foreground))',
+          },
+          accent: {
+            DEFAULT: 'hsl(var(--accent))',
+            foreground: 'hsl(var(--accent-foreground))',
+          },
+          popover: {
+            DEFAULT: 'hsl(var(--popover))',
+            foreground: 'hsl(var(--popover-foreground))',
+          },
+          card: {
+            DEFAULT: 'hsl(var(--card))',
+            foreground: 'hsl(var(--card-foreground))',
+          },
+        },
         fontSize: {
           '2xs': '.5rem',
           '1xs': '.65rem',
@@ -48,7 +89,25 @@ function Extend(Color: any, Plugins: Partial<PluginsConfig>) {
           90: '90',
           100: '100',
         },
-        colors: { ...Color },
+        borderRadius: {
+          lg: 'var(--radius)',
+          md: 'calc(var(--radius) - 2px)',
+          sm: 'calc(var(--radius) - 4px)',
+        },
+        keyframes: {
+          'accordion-down': {
+            from: { height: '0' },
+            to: { height: 'var(--radix-accordion-content-height)' },
+          },
+          'accordion-up': {
+            from: { height: 'var(--radix-accordion-content-height)' },
+            to: { height: '0' },
+          },
+        },
+        animation: {
+          'accordion-down': 'accordion-down 0.2s ease-out',
+          'accordion-up': 'accordion-up 0.2s ease-out',
+        },
       },
     },
     ...setPlugins,
