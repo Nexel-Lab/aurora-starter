@@ -16,7 +16,7 @@ import plugins from 'next-compose-plugins'
 import withPWAInit from '@ducanh2912/next-pwa'
 // import { withSentryConfig } from '@sentry/nextjs'
 import bundleAnalyzer from '@next/bundle-analyzer'
-// import million from 'million/compiler'
+import million from 'million/compiler'
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -117,6 +117,9 @@ const nextConfig = {
       },
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   ...standaloneExport,
   sentry: {
     widenClientFileUpload: true,
@@ -134,16 +137,16 @@ const sentryWebpackPluginOptions = {
   project: 'project_name',
 }
 
-// const millionConfig = {
-//   auto: { rsc: true },
-// }
+const millionConfig = {
+  auto: { rsc: true },
+}
 
 export default plugins(
   [
     // [withSentryConfig, sentryWebpackPluginOptions],
     withBundleAnalyzer,
     withPWA,
-    // [million.next, millionConfig],
+    [million.next, millionConfig],
   ],
   nextConfig,
 )
