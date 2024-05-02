@@ -1,15 +1,5 @@
 import type { DefaultSession } from 'next-auth'
 
-import { app } from '@config'
-import {
-  authOptions as authOptionsJwt,
-  getSession as getSessionJwt,
-} from './aurora.jwt'
-import {
-  authOptions as authOptionsServer,
-  getSession as getSessionServer,
-} from './aurora.server'
-
 declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
@@ -22,7 +12,7 @@ declare module 'next-auth' {
   }
 }
 
-export const authOptions =
-  app.Auth.sessionType === 'server' ? authOptionsServer : authOptionsJwt
-export const getSession =
-  app.Auth.sessionType === 'server' ? getSessionServer : getSessionJwt
+// ** Use --JWT
+// export { authOptions, getSession } from './aurora.jwt'
+// ** Use --ServerSession
+export { authOptions, getSession } from './aurora.server'
