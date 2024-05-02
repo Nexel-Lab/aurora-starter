@@ -8,7 +8,7 @@ export const app = {
   Dependencies: {
     Aurora: '2.0',
     React: '18.2.0',
-    NextJs: '14.1.4',
+    NextJs: '14.2.3',
   },
   Functions: {
     useThree: true,

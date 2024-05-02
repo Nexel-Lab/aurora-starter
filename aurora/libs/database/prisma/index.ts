@@ -1,6 +1,8 @@
-import { app } from '@global/config/config.app'
+// import { app } from '@config'
 
-import { prisma as prismaDirect } from './connect'
-import { prisma as prismaAcc } from './connect.withAccelerate'
+// import { prisma as prismaDirect } from './connect'
+// import { prisma as prismaAcc } from './connect.withAccelerate'
 
-export const prisma = app.Functions.useAccelerateDB ? prismaAcc : prismaDirect
+// export const prisma = app.Functions.useAccelerateDB ? prismaAcc : prismaDirect
+
+export { prisma } from './connect'

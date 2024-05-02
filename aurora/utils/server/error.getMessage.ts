@@ -1,4 +1,4 @@
-import { env } from '@global/env.mjs'
+import { env } from '@env'
 
 const getErrorMessage = (e: any) => {
   let message: string = 'Database connection failed'

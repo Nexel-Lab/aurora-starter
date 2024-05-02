@@ -1,1 +1,0 @@
-export { TailwindDefaultConfig } from './tailwind'

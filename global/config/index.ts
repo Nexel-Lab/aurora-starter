@@ -3,6 +3,7 @@ import { Init } from '@aurora/view'
 import config from './config'
 
 export * from './config'
+export { Routes } from './routes'
 export const metaData = Init.MetaData(config.rawMetadata)
 export const viewport = Init.Viewport()
 export const contacts = Init.Contacts(config.rawContacts)

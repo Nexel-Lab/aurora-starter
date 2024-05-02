@@ -4,7 +4,7 @@ import cookie from 'cookie'
 import type { signinInput, signupInput } from './schema'
 import type { Context } from '@server/trpc/trpc.context'
 import { getErrorMessage } from '@aurora/utils/server/error'
-import { env } from '@global/env.mjs'
+import { env } from '@env'
 
 export const signin = async ({
   ctx,

@@ -37,9 +37,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
 
-const standaloneExport = process.env.EXPORT === 'standalone' && {
-  output: 'standalone',
-}
+const appExportList = ['standalone', 'export']
+const appExport = process.env.EXPORT !== undefined &&
+  appExportList.includes(process.env.EXPORT.toLowerCase()) && {
+    output: process.env.EXPORT.toLowerCase(),
+  }
 
 const nextConfig = {
   webpack: (config, { webpack, /*dev ,*/ isServer }) => {
@@ -49,18 +51,17 @@ const nextConfig = {
       }),
     )
 
-    config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
-    config.resolve.alias['@app'] = path.join(__dirname, 'app')
-    config.resolve.alias['@global'] = path.join(__dirname, 'global')
-    config.resolve.alias['@components'] = path.join(__dirname, 'app/components')
-    config.resolve.alias['@contents'] = path.join(__dirname, 'app/contents')
-    config.resolve.alias['@server'] = path.join(__dirname, 'server')
+    // config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
+    // config.resolve.alias['@app'] = path.join(__dirname, 'app')
+    // config.resolve.alias['@global'] = path.join(__dirname, 'global')
+    // config.resolve.alias['@components'] = path.join(__dirname, 'app/components')
+    // config.resolve.alias['@contents'] = path.join(__dirname, 'app/contents')
+    // config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
-
-    config.resolve.alias['auroraGL'] = path.resolve(
-      __dirname,
-      'aurora/libs/webGL/glsl',
-    )
+    // config.resolve.alias['auroraGL'] = path.resolve(
+    //   __dirname,
+    //   'aurora/libs/webGL/glsl',
+    // )
 
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
@@ -98,6 +99,26 @@ const nextConfig = {
 
     return config
   },
+  async headers() {
+    return [
+      {
+        source: '/api/public/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,DELETE,PATCH,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value:
+              'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+          },
+        ],
+      },
+    ]
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -120,7 +141,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  ...standaloneExport,
+  ...appExport,
   sentry: {
     widenClientFileUpload: true,
     transpileClientSDK: true,
