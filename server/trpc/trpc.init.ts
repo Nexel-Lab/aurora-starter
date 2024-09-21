@@ -2,7 +2,7 @@ import { initTRPC, inferRouterInputs, inferRouterOutputs } from '@trpc/server'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
 import { createTRPCContext } from './trpc.context'
-import type { AppRouter } from '../routers'
+import type { AppRouter } from '../controllers'
 
 export const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,

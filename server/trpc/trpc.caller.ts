@@ -1,4 +1,4 @@
-import { appRouter } from '@server/routers'
+import { AppController } from '@server/controllers'
 import { t } from '@server/trpc/trpc.init'
 import { getSession } from '@server/auth'
 import { prisma } from '@aurora/libs/database/prisma'
@@ -8,7 +8,7 @@ import { s3 } from '@aurora/libs/s3'
 
 const trpcCaller = async (req: Request, res: Response) => {
   const session = await getSession()
-  const createCaller = t.createCallerFactory(appRouter)
+  const createCaller = t.createCallerFactory(AppController.router)
   return createCaller({
     req: req,
     resHeaders: res.headers,

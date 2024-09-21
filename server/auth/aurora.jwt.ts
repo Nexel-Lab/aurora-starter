@@ -5,9 +5,9 @@ import { prisma } from '@aurora/libs/database'
 import { getServerSession } from 'next-auth'
 import type { NextAuthOptions } from 'next-auth'
 
-import GoogleProvider from 'next-auth/providers/google'
-import FacebookProvider from 'next-auth/providers/facebook'
-import GithubProvider from 'next-auth/providers/github'
+// import GoogleProvider from 'next-auth/providers/google'
+// import FacebookProvider from 'next-auth/providers/facebook'
+// import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { env } from '@env'
 import { auroraSignIn } from './aurora.jwt.signIn'
@@ -55,21 +55,21 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
     colorScheme: 'dark',
   },
   providers: [
-    GoogleProvider({
-      clientId: env.AUTH_GOOGLE_CLIENT_ID,
-      clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
-    }),
-    FacebookProvider({
-      clientId: env.AUTH_FB_APP_ID,
-      clientSecret: env.AUTH_FB_APP_SECRET,
-    }),
-    GithubProvider({
-      clientId: env.AUTH_GITHUB_CLIENT_ID,
-      clientSecret: env.AUTH_GITHUB_CLIENT_SECRET,
-    }),
+    // GoogleProvider({
+    //   clientId: env.AUTH_GOOGLE_CLIENT_ID,
+    //   clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
+    // }),
+    // FacebookProvider({
+    //   clientId: env.AUTH_FB_APP_ID,
+    //   clientSecret: env.AUTH_FB_APP_SECRET,
+    // }),
+    // GithubProvider({
+    //   clientId: env.AUTH_GITHUB_CLIENT_ID,
+    //   clientSecret: env.AUTH_GITHUB_CLIENT_SECRET,
+    // }),
     CredentialsProvider({
       name: 'Email',
-      id: 'blooms-login',
+      id: 'aurora-login',
       type: 'credentials',
       credentials: {
         email: { label: 'E-mail', type: 'text', placeholder: 'E-mail' },

@@ -3,9 +3,9 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { getServerSession } from 'next-auth'
 import type { NextAuthOptions } from 'next-auth'
 
-import GoogleProvider from 'next-auth/providers/google'
-import FacebookProvider from 'next-auth/providers/facebook'
-import GithubProvider from 'next-auth/providers/github'
+// import GoogleProvider from 'next-auth/providers/google'
+// import FacebookProvider from 'next-auth/providers/facebook'
+// import GithubProvider from 'next-auth/providers/github'
 import { env } from '@env'
 import { prisma } from '@aurora/libs/database'
 
@@ -48,20 +48,20 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
     },
   },
   adapter: PrismaAdapter(prisma),
-  providers: [
-    GoogleProvider({
-      clientId: env.AUTH_GOOGLE_CLIENT_ID,
-      clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
-    }),
-    FacebookProvider({
-      clientId: env.AUTH_FB_APP_ID,
-      clientSecret: env.AUTH_FB_APP_SECRET,
-    }),
-    GithubProvider({
-      clientId: env.AUTH_GITHUB_CLIENT_ID,
-      clientSecret: env.AUTH_GITHUB_CLIENT_SECRET,
-    }),
-  ],
+  // providers: [
+  //   GoogleProvider({
+  //     clientId: env.AUTH_GOOGLE_CLIENT_ID,
+  //     clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
+  //   }),
+  //   FacebookProvider({
+  //     clientId: env.AUTH_FB_APP_ID,
+  //     clientSecret: env.AUTH_FB_APP_SECRET,
+  //   }),
+  //   GithubProvider({
+  //     clientId: env.AUTH_GITHUB_CLIENT_ID,
+  //     clientSecret: env.AUTH_GITHUB_CLIENT_SECRET,
+  //   }),
+  // ],
   secret: env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === 'development',
 }

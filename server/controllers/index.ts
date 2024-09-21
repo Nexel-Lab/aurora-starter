@@ -5,10 +5,12 @@ import { contactRouter } from './contact'
 
 /** Define your tRPC routes here */
 
-export const appRouter = createTRPCRouter({
+const router = createTRPCRouter({
   example: exampleRouter,
   user: userRouter,
   contact: contactRouter,
 })
 
-export type AppRouter = typeof appRouter
+export const AppController = { router }
+
+export type AppRouter = typeof router
